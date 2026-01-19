@@ -9,10 +9,33 @@ export const registerUserController = async (
   res: Response
 ): Promise<void> => {
   try {
-    const user = new User(req.body);
+    const { email, password, confirmPassword } = req.body;
+
+    if (!password || !confirmPassword) {
+      res.status(400).json({ message: "Password fields are required" });
+      return;
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      res.status(409).json({ message: "Email already exists" });
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      res.status(400).json({ message: "Passwords don't match!" });
+      return;
+    }
+
+    const user = new User({ email, password });
     await user.save();
-    res.status(200).json({ message: "User registered successfully" });
-  } catch (error) {
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (error: any) {
+    if (error.name === "ValidationError") {
+      res.status(400).json({ error: error.message });
+      return;
+    }
+
     res.status(500).json({ message: "Something went wrong", error });
   }
 };
