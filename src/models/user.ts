@@ -13,10 +13,17 @@ const userSchema: Schema<UserI> = new Schema<UserI>(
       type: String,
       unique: true,
       required: true,
+      trim: true,
+      lowercase: true,
     },
     password: {
       type: String,
       required: true,
+      minlength: [6, "Password must be at least 6 characters long"],
+      match: [
+        /[!@#$%^&*(),.?":{}|<>]/,
+        "Password must contain at least one special character",
+      ],
     },
   },
   {
