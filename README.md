@@ -2,7 +2,11 @@
 
   
 
-A secure authentication and authorization backend built with **Node.js**, **Express**, **MongoDB** and **TypeScript** — designed to provide a robust authentication layer for web and mobile applications.
+  
+
+A secure authentication backend built with **Node.js**, **Express**, **MongoDB** and **TypeScript** — designed to provide a robust authentication layer for web and mobile applications.
+
+  
 
   
 
@@ -10,17 +14,31 @@ A secure authentication and authorization backend built with **Node.js**, **Expr
 
   
 
--  **User Registration & Login**
+  
 
--  **JWT-based Authentication**
+- **User Registration & Login**
 
--  **Secure Password Hashing**
+  
 
--  **Middleware for Protecting Routes**
+- **JWT-based Authentication**
+
+  
+
+- **Secure Password Hashing**
+
+  
+
+- **Middleware for Protecting Routes**
+
+  
 
 - Modular and TypeScript-friendly architecture
 
+  
+
 - Environment-based configuration
+
+  
 
   
 
@@ -28,21 +46,39 @@ A secure authentication and authorization backend built with **Node.js**, **Expr
 
   
 
+  
+
 | Technology | Purpose |
+
+  
 
 |------------|---------|
 
+  
+
 | **Node.js** | Server runtime |
+
+  
 
 | **Express** | Web framework |
 
+  
+
 | **TypeScript** | Type safety |
+
+  
 
 | **JWT** | Token-based authentication |
 
+  
+
 | **bcrypt** | Password hashing |
 
+  
+
 | **dotenv** | Environment variable management |
+
+  
 
   
 
@@ -50,45 +86,93 @@ A secure authentication and authorization backend built with **Node.js**, **Expr
 
   
 
-1.  **Clone the repository**
+  
+
+1. **Clone the repository**
+
+  
 
   
 
 ```bash
 
-git  clone  https://github.com/Lijo-JD/auth-service-api.git
+  
 
-cd  auth-service-api
+git clone https://github.com/Lijo-JD/auth-service-api.git
+
+  
+
+cd auth-service-api
+
+  
 
 ```
 
   
 
-2.  **Install depedencies**
+  
+
+2. **Install depedencies**
+
+  
 
   
 
 ```bash
 
-npm  install
+  
+
+npm install
+
+  
 
 ```
 
   
 
-3.  **Create a .env file in the root directory**
+  
+
+3. **Create a .env file in the root directory**
+
+  
 
   
 
 ```bash
 
-PORT=<your_port>
+  
 
-MONGO_CONNECTION_URI=<your_database_connection_string>
+PORT=<your_application_port>
+
+  
+
+MONGO_HOST=<your_database_host>
+
+  
+
+MONGO_PORT=<your_database_port>
+
+  
+
+MONGO_DB_NAME=<your_database_name>
+
+  
 
 JWT_SECRET=<your_jwt_secret>
 
+  
+
+JWT_EXPIRES_IN=<jwt_expires_time> #Default 30d
+
+  
+
+NODE_ENV=<set_node_environment>
+
+  
+
 ```
+
+  
 
   
 
@@ -96,74 +180,129 @@ JWT_SECRET=<your_jwt_secret>
 
   
 
-4.  **Available Scripts***
+  
+
+4.  **Available Scripts**
+
+  
 
   
 
 ```bash
 
-npm  run  dev  #Start the dev server with hot reload
+  
 
-npm  run  build  #Compile TypeScript
+npm run dev #Start the dev server with hot reload
 
-npm  start  #Start production server
+  
+
+npm run build #Compile TypeScript
+
+  
+
+npm start #Start production server
+
+  
 
 ```
 
-  
+5.  **Docker**
+
+```bash
+
+docker compose up --build #Available on port 9000 by default
+
+```
+
 
 ## 📡 API Endpoints
 
   
 
+  
+
 | Method | Path | Description |
+
+  
 
 |--------|------|-------------|
 
+  
+
 | POST | /user/register | Registers User, accepts email, password, confirmPassword |
+
+  
 
 | POST | /user/login | Login functionality, accepts email, password |
 
+  
+
 | PUT | /user/change-password | Changes password, protected route, accepts oldPassword, newPassword |
+
+  
 
 | GET | /post/?search= | Protected, Fetches posts for logged-in user, accepts search query |
 
+  
+
 | POST | /post/create | Protected, Creates post, accepts title, post |
+
+  
 
 | PUT | /post/update/:id | Protected, Updates post by id, accepts title, post |
 
+  
+
 | DELETE | /post/delete/:id | Protected, Deletes post by id |
+
+  
 
 ## 🛡 Security Considerations
 
--   Store JWTs securely (e.g., HTTP-only cookies or client memory depending on your frontend)
-    
--   Use HTTPS for production environments
-    
--   Apply rate limiting and validation middleware where applicable
+  
+
+- Store JWTs securely (e.g., HTTP-only cookies or client memory depending on your frontend)
+
+- Use HTTPS for production environments
+
+- Apply rate limiting and validation middleware where applicable
+
+  
 
 ## 🧠 Best Practices
 
+  
+
 Consider adding:
 
--   Refresh token mechanism
-    
--   Role-based access controls
-    
--   Token expiry and secret rotation
-    
--   Input validation (schema validation, etc.)
+  
+
+- Refresh token mechanism
+
+- Role-based access controls
+
+- Token expiry and secret rotation
+
+- Input validation (schema validation, etc.)
+
+  
 
 ## 🤝 Contribution
 
-1.  Fork this repository
-    
-2.  Create your feature branch
-    
-3.  Commit your changes
-    
-4.  Open a pull request
+  
+
+1. Fork this repository
+
+2. Create your feature branch
+
+3. Commit your changes
+
+4. Open a pull request
+
+  
 
 ## 📜 License
+
+  
 
 This project is licensed under the **MIT License**.

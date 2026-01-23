@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: auth-service-api
+    env_file:
+      - .env
+    environment:
+      - MONGO_HOST=mongo
+    ports:
+      - "9000:9000"
+    depends_on:
+      - mongo
+    networks:
+      - auth-network
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:8
+    container_name: auth-mongo
+    networks:
+      - auth-network
+    restart: unless-stopped
+
+networks:
+  auth-network:
+    driver: bridge
