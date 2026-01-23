@@ -3,6 +3,7 @@ import { Types } from "mongoose";
 
 import { AuthRequest } from "../middlewares/authMiddleware";
 import Post from "../models/post";
+import User from "../models/user";
 
 export const createPostController = async (
   req: AuthRequest,
@@ -10,6 +11,12 @@ export const createPostController = async (
 ): Promise<void> => {
   try {
     const { user } = req;
+    const tuser = await User.findById(user);
+    if(!tuser) {
+      res.status(404).json({message: "User not found"})
+      return;
+    }
+    
     const { title, post } = req.body;
     const obj = {
       title,

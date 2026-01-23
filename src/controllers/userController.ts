@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import jwt, {SignOptions,} from "jsonwebtoken";
 
 import { AuthRequest } from "../middlewares/authMiddleware";
 import User from "../models/user";
@@ -84,9 +84,9 @@ export const loginController = async (
       return;
     }
     const token = jwt.sign({ user_id: user._id }, process.env.JWT_SECRET!, {
-      expiresIn: "30d",
+      expiresIn: (process.env.JWT_EXPIRES_IN || "30d") as any,
     });
-    res.status(200).json({ message: "Successfully logged in ", token });
+    res.status(200).json({ message: "Successfully logged in", token });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong", error });
   }
