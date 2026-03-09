@@ -257,36 +257,6 @@ docker compose up --build #Available on port 9000 by default
 
   
 
-## 🛡 Security Considerations
-
-  
-
-- Store JWTs securely (e.g., HTTP-only cookies or client memory depending on your frontend)
-
-- Use HTTPS for production environments
-
-- Apply rate limiting and validation middleware where applicable
-
-  
-
-## 🧠 Best Practices
-
-  
-
-Consider adding:
-
-  
-
-- Refresh token mechanism
-
-- Role-based access controls
-
-- Token expiry and secret rotation
-
-- Input validation (schema validation, etc.)
-
-  
-
 ## 🤝 Contribution
 
   
